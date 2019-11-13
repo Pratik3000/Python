@@ -1,7 +1,13 @@
-1. Python Multi-Processing generally used a 64bit Python. It leverages multiple cores in the machine.
+Python Multi-Processing generally used a 64bit Python. It leverages multiple cores in the machine.
 
 import multiprocessing as mp
 import torch
 pool = mp.Pool(mp.cpu_count())
 print("number of cores engaged {}".format(pool))
 torch.multiprocessing.freeze_support()
+try:
+    results = [pool.apply(<func_name>, args=(<arg1>,<arg2>,..)) for <arg1> in <list_of_args>]
+    pool.close()
+except Exception as e:
+    print("ERROR: Error in pool job.")
+    print("ERROR: {}".format(str(e)))
